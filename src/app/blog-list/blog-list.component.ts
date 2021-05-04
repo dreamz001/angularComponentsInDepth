@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { title } from 'process';
 import { BlogPost } from '../blog-post';
+import { BlogPostTileComponent } from '../blog-post-tile/blog-post-tile.component';
 
 @Component({
   selector: 'app-blog-list',
@@ -11,6 +12,7 @@ export class BlogListComponent implements OnInit {
 
   blogPosts: BlogPost[][];
   currentPage: number;
+  @ViewChild('tile') blogPostTileComponent: BlogPostTileComponent;
   constructor() { }
   
   ngOnInit() {
@@ -42,5 +44,9 @@ export class BlogListComponent implements OnInit {
 
   updatePage(newPage){
     this.currentPage = newPage ;
+  }
+
+  expandAll(){
+    this.blogPostTileComponent.showFullSummary();
   }
 }
